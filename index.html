@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نمونه‌کار LayCode</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">L</div>
+        <span>LayCode</span>
+      </div>
+      <nav class="links">
+        <a href="#features">ویژگی‌ها</a>
+        <a href="#pricing">تعرفه‌ها</a>
+        <a href="#contact">تماس</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>سایت شیک و سریع برای کسب‌وکار شما</h1>
+      <p>با HTML و CSS استاندارد (Grid + Flex)، بهینه برای موبایل، آماده انتشار روی GitHub Pages یا Netlify.</p>
+      <div class="actions">
+        <a href="#pricing" class="btn primary">شروع همکاری</a>
+        <a href="#features" class="btn">مشاهدهٔ امکانات</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="section">
+    <div class="container">
+      <h2>چرا این لندینگ؟</h2>
+      <p class="lead">تمیز، سبک، بدون وابستگی، و قابل شخصی‌سازی سریع برای هر نوع بیزینس.</p>
+      <div class="features">
+        <div class="card"><h3>ریسپانسیو کامل</h3><p>سازگار با موبایل، تبلت و دسکتاپ با Media Query و Grid تطبیقی.</p></div>
+        <div class="card"><h3>بهینه و سریع</h3><p>بدون فریم‌ورک سنگین؛ فقط HTML + CSS مینیمال.</p></div>
+        <div class="card"><h3>قابل توسعه</h3><p>افزودن بخش‌ها، فرم‌ها و انیمیشن‌ها به‌سادگی.</p></div>
+        <div class="card"><h3>سئو پایه</h3><p>ساختار معنایی، عنوان و توضیحات مناسب برای موتورهای جست‌وجو.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <h2>تعرفهٔ پیشنهادی</h2>
+      <p class="lead">بسته‌های شفاف برای شروع همکاری. امکان شخصی‌سازی وجود دارد.</p>
+      <div class="pricing">
+        <div class="price-card">
+          <h3>پایه</h3>
+          <div class="price">شروع از ۵۰۰هزار</div>
+          <ul>
+            <li>یک صفحه لندینگ</li>
+            <li>ریسپانسیو</li>
+            <li>انتشار روی GitHub Pages</li>
+          </ul>
+          <a class="btn primary" href="#contact">درخواست</a>
+        </div>
+        <div class="price-card">
+          <h3>حرفه‌ای</h3>
+          <div class="price">شروع از ۱٫۵ میلیون</div>
+          <ul>
+            <li>۲-۳ بخش اضافه</li>
+            <li>فرم تماس فعال</li>
+            <li>بهینه‌سازی عملکرد</li>
+          </ul>
+          <a class="btn primary" href="#contact">درخواست</a>
+        </div>
+        <div class="price-card">
+          <h3>اختصاصی</h3>
+          <div class="price">طبق نیاز شما</div>
+          <ul>
+            <li>طراحی سفارشی</li>
+            <li>چندصفحه‌ای</li>
+            <li>اتصال دامنه</li>
+          </ul>
+          <a class="btn primary" href="#contact">درخواست</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>تماس</h2>
+      <p class="lead">برای سفارش یا پرسش، فرم زیر را پر کنید.</p>
+      <div class="glass" style="padding:20px">
+        <form action="#" method="post">
+          <label>نام<input type="text" name="name" placeholder="نام شما" required></label>
+          <label>ایمیل<input type="email" name="email" placeholder="ایمیل شما" required></label>
+          <label>توضیحات<textarea name="message" placeholder="در مورد کسب‌وکار و نیازتان بنویسید…" required></textarea></label>
+          <button class="btn primary" type="submit">ارسال درخواست</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">© <span id="y"></span> LayCode — همه حقوق محفوظ است.</div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
