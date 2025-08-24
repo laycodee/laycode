@@ -1,112 +1,243 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>نمونه‌کار LayCode</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>نمونه‌کار لندینگ پیج | laycode</title>
+  <meta name="description" content="لندینگ پیج ریسپانسیو ساخته شده با HTML و CSS (Grid + Flex)">
+  <style>
+    :root{
+      --bg:#0f172a;      
+      --panel:#111827;   
+      --muted:#94a3b8;   
+      --text:#f8fafc;    
+      --brand:#22d3ee;   
+      --brand-2:#a78bfa; 
+      --ring: rgba(34,211,238,.35);
+      --radius:16px;
+      --shadow:0 10px 25px rgba(0,0,0,.35);
+      --maxw:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,rgba(167,139,250,.15),transparent),
+                               radial-gradient(900px 500px at 10% -20%,rgba(34,211,238,.18),transparent),
+                               var(--bg);color:var(--text);font:400 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(17,24,39,.7);backdrop-filter: blur(10px);border-bottom:1px solid rgba(255,255,255,.06);z-index:10}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .logo{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 6px 18px rgba(34,211,238,.35);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:white}
+    .nav a.btn{padding:10px 16px;background:linear-gradient(135deg,var(--brand),var(--brand-2));border-radius:12px;box-shadow:var(--shadow);font-weight:600}
+
+    /* HERO */
+    .hero{padding:72px 0}
+    .hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
+    .hero h1{font-size:clamp(28px,4vw,44px);line-height:1.2;margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 24px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.1);transition:.2s;cursor:pointer}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));border-color:transparent;box-shadow:var(--shadow);font-weight:700}
+    .btn:hover{transform:translateY(-1px);}
+
+    .glass{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .preview{aspect-ratio:4/3;overflow:hidden}
+    .preview .grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:1fr;gap:10px;padding:16px}
+    .cell{border-radius:12px;background:linear-gradient(180deg,rgba(34,211,238,.12),rgba(167,139,250,.12));border:1px dashed rgba(255,255,255,.18)}
+    .cell.big{grid-column:span 7;grid-row:span 2}
+    .cell.tall{grid-column:span 5;grid-row:span 3}
+    .cell.wide{grid-column:span 7}
+
+    /* SECTIONS */
+    .section{padding:56px 0}
+    .section h2{font-size:clamp(22px,3vw,34px);margin:0 0 10px}
+    .section p.lead{color:var(--muted);margin:0 0 28px}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .card{padding:18px;border-radius:16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08)}
+    .kicker{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);color:var(--muted);font-size:12px;margin-bottom:10px}
+
+    /* PRICING */
+    .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .price-card{padding:20px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:14px}
+    .price{font-size:28px;font-weight:800}
+    .ul{display:grid;gap:8px;color:var(--muted)}
+
+    /* CONTACT */
+    form{display:grid;gap:12px}
+    input,textarea{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--text);padding:12px 14px;border-radius:12px;outline:none}
+    input:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 4px var(--ring)}
+    textarea{min-height:120px}
+
+    footer{padding:36px 0;color:var(--muted);text-align:center}
+
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns:1fr}
+      .preview{order:-1}
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
   <header>
     <div class="container nav">
-      <div class="brand">
-        <div class="logo">L</div>
-        <span>LayCode</span>
-      </div>
-      <nav class="links">
+      <div class="brand"><div class="logo">L</div><span>LayCode</span></div>
+      <nav class="links" aria-label="ناوبری">
         <a href="#features">ویژگی‌ها</a>
+        <a href="#portfolio">نمونه‌کارها</a>
         <a href="#pricing">تعرفه‌ها</a>
-        <a href="#contact">تماس</a>
+        <a class="btn" href="#contact">تماس</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <h1>سایت شیک و سریع برای کسب‌وکار شما</h1>
-      <p>با HTML و CSS استاندارد (Grid + Flex)، بهینه برای موبایل، آماده انتشار روی GitHub Pages یا Netlify.</p>
-      <div class="actions">
-        <a href="#pricing" class="btn primary">شروع همکاری</a>
-        <a href="#features" class="btn">مشاهدهٔ امکانات</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section id="features" class="section">
-    <div class="container">
-      <h2>چرا این لندینگ؟</h2>
-      <p class="lead">تمیز، سبک، بدون وابستگی، و قابل شخصی‌سازی سریع برای هر نوع بیزینس.</p>
-      <div class="features">
-        <div class="card"><h3>ریسپانسیو کامل</h3><p>سازگار با موبایل، تبلت و دسکتاپ با Media Query و Grid تطبیقی.</p></div>
-        <div class="card"><h3>بهینه و سریع</h3><p>بدون فریم‌ورک سنگین؛ فقط HTML + CSS مینیمال.</p></div>
-        <div class="card"><h3>قابل توسعه</h3><p>افزودن بخش‌ها، فرم‌ها و انیمیشن‌ها به‌سادگی.</p></div>
-        <div class="card"><h3>سئو پایه</h3><p>ساختار معنایی، عنوان و توضیحات مناسب برای موتورهای جست‌وجو.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section id="pricing" class="section">
-    <div class="container">
-      <h2>تعرفهٔ پیشنهادی</h2>
-      <p class="lead">بسته‌های شفاف برای شروع همکاری. امکان شخصی‌سازی وجود دارد.</p>
-      <div class="pricing">
-        <div class="price-card">
-          <h3>پایه</h3>
-          <div class="price">شروع از ۵۰۰هزار</div>
-          <ul>
-            <li>یک صفحه لندینگ</li>
-            <li>ریسپانسیو</li>
-            <li>انتشار روی GitHub Pages</li>
-          </ul>
-          <a class="btn primary" href="#contact">درخواست</a>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="kicker">لندینگ پیج ریسپانسیو</span>
+          <h1>سایت شیک و سریع برای کسب‌وکار شما</h1>
+          <p>با HTML و CSS استاندارد (Grid + Flex)، بهینه برای موبایل، آمادهٔ انتشار روی GitHub Pages یا Netlify.</p>
+          <div class="actions">
+            <a class="btn primary" href="#pricing">شروع همکاری</a>
+            <a class="btn" href="#features">مشاهدهٔ امکانات</a>
+          </div>
         </div>
-        <div class="price-card">
-          <h3>حرفه‌ای</h3>
-          <div class="price">شروع از ۱٫۵ میلیون</div>
-          <ul>
-            <li>۲-۳ بخش اضافه</li>
-            <li>فرم تماس فعال</li>
-            <li>بهینه‌سازی عملکرد</li>
-          </ul>
-          <a class="btn primary" href="#contact">درخواست</a>
-        </div>
-        <div class="price-card">
-          <h3>اختصاصی</h3>
-          <div class="price">طبق نیاز شما</div>
-          <ul>
-            <li>طراحی سفارشی</li>
-            <li>چندصفحه‌ای</li>
-            <li>اتصال دامنه</li>
-          </ul>
-          <a class="btn primary" href="#contact">درخواست</a>
+        <div class="glass preview" aria-hidden="true">
+          <div class="grid">
+            <div class="cell big"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell tall"></div>
+            <div class="cell"></div>
+            <div class="cell wide"></div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section">
-    <div class="container">
-      <h2>تماس</h2>
-      <p class="lead">برای سفارش یا پرسش، فرم زیر را پر کنید.</p>
-      <div class="glass" style="padding:20px">
-        <form action="#" method="post">
-          <label>نام<input type="text" name="name" placeholder="نام شما" required></label>
-          <label>ایمیل<input type="email" name="email" placeholder="ایمیل شما" required></label>
-          <label>توضیحات<textarea name="message" placeholder="در مورد کسب‌وکار و نیازتان بنویسید…" required></textarea></label>
-          <button class="btn primary" type="submit">ارسال درخواست</button>
-        </form>
+    <!-- FEATURES -->
+    <section id="features" class="section">
+      <div class="container">
+        <h2>چرا این لندینگ؟</h2>
+        <p class="lead">تمیز، سبک، بدون وابستگی، و قابل شخصی‌سازی سریع برای هر نوع بیزینس.</p>
+        <div class="features">
+          <div class="card">
+            <h3>ریسپانسیو کامل</h3>
+            <p>سازگار با موبایل، تبلت و دسکتاپ با Media Query و Grid تطبیقی.</p>
+          </div>
+          <div class="card">
+            <h3>بهینه و سریع</h3>
+            <p>بدون فریم‌ورک سنگین؛ فقط HTML + CSS مینیمال.</p>
+          </div>
+          <div class="card">
+            <h3>قابل توسعه</h3>
+            <p>افزودن بخش‌ها، فرم‌ها و انیمیشن‌ها به‌سادگی.</p>
+          </div>
+          <div class="card">
+            <h3>سئو پایه</h3>
+            <p>ساختار معنایی، عنوان و توضیحات مناسب برای موتورهای جست‌وجو.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="section">
+      <div class="container">
+        <h2>نمونه‌کارها</h2>
+        <p class="lead">چند نمونه از پروژه‌های حرفه‌ای و طراحی‌های انجام شده</p>
+        <div class="features">
+          <div class="card">
+            <img src="https://via.placeholder.com/400x250" alt="پروژه ۱" style="border-radius:12px;width:100%;height:auto;">
+            <h3>وبسایت فروشگاهی</h3>
+            <p>طراحی ریسپانسیو با HTML/CSS و Grid، شامل سبد خرید و صفحه محصول.</p>
+            <a class="btn primary" href="#">مشاهده پروژه</a>
+          </div>
+          <div class="card">
+            <img src="https://via.placeholder.com/400x250" alt="پروژه ۲" style="border-radius:12px;width:100%;height:auto;">
+            <h3>صفحه فرود استارتاپ</h3>
+            <p>Landing Page حرفه‌ای با طراحی جذاب و فرم تماس فعال برای جذب مشتری.</p>
+            <a class="btn primary" href="#">مشاهده پروژه</a>
+          </div>
+          <div class="card">
+            <img src="https://via.placeholder.com/400x250" alt="پروژه ۳" style="border-radius:12px;width:100%;height:auto;">
+            <h3>اپلیکیشن وب رستوران</h3>
+            <p>نمایش منو، سفارش آنلاین و تجربه کاربری روان با CSS مدرن و انیمیشن‌های ساده.</p>
+            <a class="btn primary" href="#">مشاهده پروژه</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section">
+      <div class="container">
+        <h2>تعرفهٔ پیشنهادی</h2>
+        <p class="lead">بسته‌های شفاف برای شروع همکاری. امکان شخصی‌سازی وجود دارد.</p>
+        <div class="pricing">
+          <div class="price-card">
+            <h3>پایه</h3>
+            <div class="price">شروع از ۵۰۰هزار</div>
+            <div class="ul">
+              <span>یک صفحه لندینگ</span>
+              <span>ریسپانسیو</span>
+              <span>انتشار روی GitHub Pages</span>
+            </div>
+            <a class="btn primary" href="#contact">درخواست</a>
+          </div>
+          <div class="price-card">
+            <h3>حرفه‌ای</h3>
+            <div class="price">شروع از ۱٫۵ میلیون</div>
+            <div class="ul">
+              <span>۲-۳ بخش اضافه</span>
+              <span>فرم تماس فعال</span>
+              <span>بهینه‌سازی عملکرد</span>
+            </div>
+            <a class="btn primary" href="#contact">درخواست</a>
+          </div>
+          <div class="price-card">
+            <h3>اختصاصی</h3>
+            <div class="price">طبق نیاز شما</div>
+            <div class="ul">
+              <span>طراحی سفارشی</span>
+              <span>چندصفحه‌ای</span>
+              <span>اتصال دامنه</span>
+            </div>
+            <a class="btn primary" href="#contact">درخواست</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>تماس</h2>
+        <p class="lead">برای سفارش یا پرسش، فرم زیر را پر کنید.</p>
+        <div class="glass" style="padding:20px">
+          <form action="#" method="post">
+            <label>
+              نام
+              <input type="text" name="name" placeholder="نام شما" required>
+            </label>
+            <label>
+              ایمیل
+              <input type="email" name="email" placeholder="laycodee@gmail.com" required>
+            </label>
+            <label>
+              توضیحات پروژه
+              <textarea name="message" placeholder="در مورد کسب‌وکار و نیازتان بنویسید…" required></textarea>
+            </label>
+            <button class="btn primary" type="submit">ارسال درخواست</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <footer>
-    <div class="container">© <span id="y"></span> LayCode — همه حقوق محفوظ است.</div>
+    <div class="container">© <span id="y"></span> نام شما — تمام حقوق محفوظ است.</div>
   </footer>
 
   <script>
